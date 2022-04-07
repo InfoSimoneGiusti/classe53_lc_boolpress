@@ -25,6 +25,14 @@
                                 <td>{{substr($post->content, 0, 30)}}</td>
                                 <td>{{$post->slug}}</td>
                                 <td>
+                                    <a href="{{route('admin.posts.show', $post->id)}}" class="btn btn-primary">Vedi</a>
+                                    <a href="{{route('admin.posts.edit', $post->id)}}" class="btn btn-secondary">Modifica</a>
+
+                                    <form method="POST" action="{{route('admin.posts.destroy', $post->id)}}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Elimina</button>
+                                    </form>
 
                                 </td>
                             </tr>
