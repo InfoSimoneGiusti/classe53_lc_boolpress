@@ -18,7 +18,6 @@ class PostController extends Controller
     {
         $posts = Post::all();
         return view('admin.post.index', compact('posts'));
-
     }
 
     /**
@@ -39,6 +38,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate(
+            [
+                'title' => 'required|min:5',
+                'content' => 'required|min:5'
+            ]
+        );
+
         $post = new Post();
 
         $data = $request->all();
@@ -49,7 +56,7 @@ class PostController extends Controller
 
         $counter = 1;
 
-        while(Post::where('slug', $slug)->first()) {
+        while (Post::where('slug', $slug)->first()) {
             $slug = Str::slug($data['title']) . '-' . $counter;
             $counter++;
         }
@@ -60,7 +67,6 @@ class PostController extends Controller
         $post->save();
 
         return redirect()->route('admin.posts.index');
-
     }
 
     /**
@@ -95,6 +101,13 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
 
+        $request->validate(
+            [
+                'title' => 'required|min:5',
+                'content' => 'required|min:5'
+            ]
+        );
+        
         $data = $request->all();
 
         $slug = Str::slug($data['title']);
@@ -103,13 +116,12 @@ class PostController extends Controller
 
             $counter = 1;
 
-            while(Post::where('slug', $slug)->first()) {
+            while (Post::where('slug', $slug)->first()) {
                 $slug = Str::slug($data['title']) . '-' . $counter;
                 $counter++;
             }
 
             $data['slug'] = $slug;
-
         }
 
         $post->update($data);
@@ -117,7 +129,6 @@ class PostController extends Controller
         $post->save();
 
         return redirect()->route('admin.posts.index');
-
     }
 
     /**
