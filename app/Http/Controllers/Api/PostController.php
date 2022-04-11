@@ -16,7 +16,9 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::with(['category'])->get(); //Laravel risolve per noi la relation con category
+        //$posts = Post::with(['category'])->get(); //Laravel risolve per noi la relation con category
+
+        $posts = Post::where('title', 'LIKE', 'Antipasto toscano')->paginate(2);
 
         return response()->json(
             [
@@ -28,3 +30,13 @@ class PostController extends Controller
     }
 
 }
+
+
+
+
+
+
+
+
+
+
