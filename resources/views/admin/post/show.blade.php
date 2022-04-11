@@ -8,7 +8,10 @@
                 <div><strong>Titolo: </strong> {{$post->title}}</div>
                 <div><strong>Contenuto: </strong> {!! $post->content !!}</div>
                 <div><strong>Slug: </strong> {{$post->slug}}</div>
-                <div><strong>Categoria: </strong> {{$post->category->name}}</div>
+                <div><strong>Categoria: </strong> {{isset($post->category)?$post->category->name:'N.D.'}}</div>
+
+                <div><strong>Il post è stato scritto: </strong> {{$diffInDays}} giorni fa</div>
+
 
                 <div>
                     @foreach ($post->tags as $tag)
