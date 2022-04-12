@@ -18,7 +18,7 @@ class PostController extends Controller
 
         //$posts = Post::with(['category'])->get(); //Laravel risolve per noi la relation con category
 
-        $posts = Post::where('title', 'LIKE', 'Antipasto toscano')->paginate(2);
+        $posts = Post::with(['category', 'tags'])->paginate(2);
 
         return response()->json(
             [
@@ -26,17 +26,28 @@ class PostController extends Controller
                 'success' => true
             ]
         );
-
     }
 
+
+    public function show($slug)
+    {
+
+        $post = Post::where('slug', '=', $slug)->with(['category', 'tags'])->first();
+
+        if ($post) {
+            return response()->json(
+                [
+                    'result' => $post,
+                    'success' => true
+                ]
+            );
+        } else {
+            return response()->json(
+                [
+                    'result' => 'Nessun risultato trovato',
+                    'success' => false
+                ]
+            );
+        }
+    }
 }
-
-
-
-
-
-
-
-
-
-

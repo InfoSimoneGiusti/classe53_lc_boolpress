@@ -1,14 +1,13 @@
 <template>
-    <main>
-        <router-view></router-view>
-    </main>
+  <h1>Benvenuto nel nostro blog!</h1>
 </template>
 
 <script>
 export default {
-  name: "Main",
-};
+    name: 'Home'
+}
 </script>
 
 <style>
+
 </style>

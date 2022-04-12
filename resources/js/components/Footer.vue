@@ -1,14 +1,13 @@
 <template>
-    <main>
-        <router-view></router-view>
-    </main>
+  <div>Io sono il footer</div>
 </template>
 
 <script>
 export default {
-  name: "Main",
-};
+    name: 'Footer'
+}
 </script>
 
 <style>
+
 </style>
