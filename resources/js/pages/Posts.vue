@@ -5,13 +5,15 @@
 
       <div class="row">
         <div class="col-6" v-for="post in posts" :key="post.id">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{{ post.title }}</h5>
-              <p class="card-text">{{ post.content }}</p>
-              <a href="#" class="btn btn-primary">Vedi articolo completo</a>
-            </div>
-          </div>
+
+            <Post
+                :title='post.title'
+                :content='post.content'
+                :slug='post.slug'
+                :category='post.category'
+                :tags='post.tags'
+            />
+
         </div>
       </div>
 
@@ -27,9 +29,14 @@
 </template>
 
 <script>
+
+import Post from '../components/Post';
+
 export default {
   name: "Main",
-
+  components: {
+      Post
+  },
   data() {
     return {
       posts: [],
@@ -40,8 +47,7 @@ export default {
 
   methods: {
     getPosts(apiPage) {
-
-      axios.get("/api/posts", {
+      axios.get("/api/posts", { //localhost:8000/api/posts?page=numeroPagina
           'params': {
               'page': apiPage
           }

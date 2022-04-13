@@ -14,8 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+
+
+
+//www.miosito.it/login
 Auth::routes();
 
+
+//www.miosito.it/admin/*
 Route::middleware('auth')
     ->namespace('Admin')
     ->name('admin.')
@@ -31,8 +37,7 @@ Route::middleware('auth')
 
     });
 
-
-
+//www.miosito.it/qualsiasi cosa non precedentemente definita
 Route::get('{any?}', function() {
     return view('guests.home');
 })->where('any', '.*');

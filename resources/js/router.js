@@ -8,9 +8,10 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Posts from './pages/Posts';
 import SinglePost from './pages/SinglePost';
+import NotFound from './pages/NotFound';
 
 const router = new VueRouter({
-    mode: "history",
+    mode: "history", //www.miosito.it/blog/mio-post
     routes: [
         {
             path: '/',
@@ -28,16 +29,20 @@ const router = new VueRouter({
             component: Contact
         },
         {
-            path: '/posts',
-            name: 'posts',
+            path: '/blog',
+            name: 'blog',
             component: Posts
         },
         {
-            //posts/cicciobello
-            path: '/posts/:slug', // equivale a Laravel: Route::get('/posts/{slug}', 'Api\PostController@show');
+            path: '/blog/:slug', // equivale a Laravel: Route::get('/blog/{slug}', 'Api\PostController@show');  :parametro di vue-router equivale a {parametro} delle rotte di Laravel
             name: 'single-post',
             component: SinglePost
         },
+        {
+            path: '/:pathMatch(.*)*', // /* => quel che c'è c'è /pippo/pluto
+            name: 'not-found',
+            component: NotFound
+        }
     ]
 });
 
