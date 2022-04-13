@@ -3,6 +3,7 @@
         <div class="row">
             <div class="col-12">
                 <div v-if="post">
+                    <img class="img-fluid" :src="post.cover" :alt="post.title">
                     <h1>{{post.title}}</h1>
                     <h3 v-if="post.category">Categoria: {{post.category.name}}</h3>
                     <p>{{post.content}}</p>
@@ -18,7 +19,7 @@
 
 
 
-        
+
     </div>
 </template>
 

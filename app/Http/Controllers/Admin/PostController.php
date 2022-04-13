@@ -9,6 +9,7 @@ use App\Tag;
 use Carbon\Carbon;
 use Doctrine\Inflector\Rules\Word;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -54,6 +55,7 @@ class PostController extends Controller
                 'content' => 'required|min:10',
                 'category_id' => 'nullable|exists:categories,id',
                 'tags' => 'nullable|exists:tags,id',
+                'image' => 'nullable|image|max:2048',
             ]
         );
 
@@ -69,6 +71,11 @@ class PostController extends Controller
         //select * from post where slug = 'impara-a-programmare'
         //prendo il titolo e lo converto in "slug", per far questo uso la Str::slug, usando Illuminate\Support\Str;
 
+
+        if (isset($data['image'])) {
+            $cover_path = Storage::put('post_covers', $data['image']);
+            $data['cover'] = $cover_path;
+        }
 
 
         $slug = Str::slug($data['title']);
@@ -139,10 +146,24 @@ class PostController extends Controller
                 'content' => 'required|min:10',
                 'category_id' => 'nullable|exists:categories,id',
                 'tags' => 'nullable|exists:tags,id',
+                'image' => 'nullable|image|max:2048',
             ]
         );
 
         $data = $request->all();
+
+
+
+        if (isset($data['image'])) {
+
+            if ($post->cover) {
+                Storage::delete($post->cover);
+            }
+
+            $cover_path = Storage::put('post_covers', $data['image']);
+            $data['cover'] = $cover_path;
+        }
+
 
         $slug = Str::slug($data['title']);
 
@@ -171,6 +192,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->cover) {
+            Storage::delete($post->cover);
+        }
         $post->delete();
         return redirect()->route('admin.posts.index');
     }
