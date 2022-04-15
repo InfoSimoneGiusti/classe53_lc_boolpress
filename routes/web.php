@@ -35,6 +35,11 @@ Route::middleware('auth')
 
         Route::resource('tags', 'TagController');
 
+        Route::get('user', 'UserController@edit')->name('user.edit');
+        Route::put('user', 'UserController@update')->name('user.update');
+
+        Route::get('user/getPrivateAvatar', 'UserController@downloadPrivateAvatar')->name('user.getAvatar');
+
     });
 
 //www.miosito.it/qualsiasi cosa non precedentemente definita
