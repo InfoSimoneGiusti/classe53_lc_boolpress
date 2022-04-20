@@ -10,7 +10,7 @@
 
                 <div class="form-group">
                     <label for="name">Come ti chiami?</label>
-                    <input type="text" class="form-control" :class="{'is-invalid':errors.name}" id="name" name="name" v-model="name">
+                    <input required type="text" class="form-control" :class="{'is-invalid':errors.name}" id="name" name="name" v-model="name">
                     <p v-for="(error, index) in errors.name" :key="'error_name'+index" class="invalid-feedback">
                         {{error}}
                     </p>
@@ -18,7 +18,7 @@
 
                 <div class="form-group">
                     <label for="email">Inserisci la tua email</label>
-                    <input type="email" class="form-control" :class="{'is-invalid':errors.email}" id="email" name="email" v-model="email">
+                    <input required type="email" class="form-control" :class="{'is-invalid':errors.email}" id="email" name="email" v-model="email">
                     <p v-for="(error, index) in errors.email" :key="'error_email'+index" class="invalid-feedback">
                         {{error}}
                     </p>
@@ -26,7 +26,7 @@
 
                 <div class="form-group">
                     <label for="message">Cosa vuoi dirci?</label>
-                    <textarea class="form-control" :class="{'is-invalid':errors.message}" id="message" rows="10" name="message" v-model="message"></textarea>
+                    <textarea required class="form-control" :class="{'is-invalid':errors.message}" id="message" rows="10" name="message" v-model="message"></textarea>
                     <p v-for="(error, index) in errors.message" :key="'error_message'+index" class="invalid-feedback">
                         {{error}}
                     </p>

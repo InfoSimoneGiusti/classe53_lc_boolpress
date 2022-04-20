@@ -3745,7 +3745,12 @@ var render = function () {
                   ],
                   staticClass: "form-control",
                   class: { "is-invalid": _vm.errors.name },
-                  attrs: { type: "text", id: "name", name: "name" },
+                  attrs: {
+                    required: "",
+                    type: "text",
+                    id: "name",
+                    name: "name",
+                  },
                   domProps: { value: _vm.name },
                   on: {
                     input: function ($event) {
@@ -3796,7 +3801,12 @@ var render = function () {
                   ],
                   staticClass: "form-control",
                   class: { "is-invalid": _vm.errors.email },
-                  attrs: { type: "email", id: "email", name: "email" },
+                  attrs: {
+                    required: "",
+                    type: "email",
+                    id: "email",
+                    name: "email",
+                  },
                   domProps: { value: _vm.email },
                   on: {
                     input: function ($event) {
@@ -3847,7 +3857,12 @@ var render = function () {
                   ],
                   staticClass: "form-control",
                   class: { "is-invalid": _vm.errors.message },
-                  attrs: { id: "message", rows: "10", name: "message" },
+                  attrs: {
+                    required: "",
+                    id: "message",
+                    rows: "10",
+                    name: "message",
+                  },
                   domProps: { value: _vm.message },
                   on: {
                     input: function ($event) {
